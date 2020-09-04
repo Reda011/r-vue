@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="main.js"></script>
+    <script src="compile.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{name}}</p>
+      <p r-text="text"></p>
+      <p>{{age}}</p>
+      <div r-html="html"></div>
+      <input type="text" r-model="name" />
+      <button @click="clickHandler">点击</button>
+    </div>
+  </body>
+  <script>
+    const app = new RVue({
+      data: {
+        name: "李白",
+        age: 1001,
+        text: "这是一个text",
+        html: "<p>这是插入的HTML</p>",
+      },
+      el: "#app",
+      created() {
+        console.log("开始了");
+        setTimeout(() => {
+          this.name = "杜甫";
+        }, 1000);
+      },
+      methods: {
+        clickHandler() {
+          console.log("clickHandler");
+          this.name = "改变名字";
+          this.age = 1;
+        },
+      },
+    });
+
+    // app.$data.title = "更改了title";
+    // app.$data.desc.version = "2.0.0";
+  </script>
+</html>
